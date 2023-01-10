@@ -19,11 +19,11 @@ def find_closest(ram, ram_refs):
         else:
             if abs(ram-ram_ref) < abs(ram-ram_final):
                 ram_final = ram_ref
-                
+
     return ram_final
 
 
-def calculate_price(df_cockpit=df_cockpit, df_mycloud=df_mycloud):
+def calculate_price(df_cockpit, df_mycloud):
     '''
     Calculate the price of a configuration.
 
