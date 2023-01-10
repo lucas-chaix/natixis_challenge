@@ -1,6 +1,6 @@
 import pandas as pd
 
-def find_closest(ram, ram_refs):
+def find_closest(value, refs):
     '''
     Find the closest value to a float in a list of floats.
 
@@ -10,17 +10,17 @@ def find_closest(ram, ram_refs):
     Return: 
         ram_final : float = closets reference value.
     '''
-    for index, ram_ref in enumerate(ram_refs):
+    for index, ref in enumerate(refs):
         # Initialization
         if index==0:
-            ram_final = ram_refs[0]
+            value_final = refs[0]
 
-        # Reccurence
+        # Recurrence
         else:
-            if abs(ram-ram_ref) < abs(ram-ram_final):
-                ram_final = ram_ref
+            if abs(value-ref) < abs(value-value_final):
+                value_final = ref
 
-    return ram_final
+    return value_final
 
 
 def calculate_price(df_cockpit, df_mycloud):
@@ -34,7 +34,7 @@ def calculate_price(df_cockpit, df_mycloud):
         price : float = total price of the configuration
     '''
     # Extract usable data : mycloud servors only
-    config = pd.DataFrame(df_cockpit[df_cockpit.mycloud=='Yes'][["iua", "ram", "number_cpu", "name_server"]].sort_values("ram"))
+    config = pd.DataFrame(df_cockpit[df_cockpit.mycloud=='Yes'][["ram", "number_cpu", "name_server"]].sort_values("ram"))
     # Convert in GBytes
     config["ram"] = config.ram/1000 
 
